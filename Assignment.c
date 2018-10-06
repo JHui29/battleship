@@ -18,7 +18,7 @@ int battleshipLength=4;
 int cruiserLength=3;
 int submarineLength=3;
 int destroyerLength=2;
-int player;
+int player=0;
 
 
 char array1[11][11]={
@@ -77,16 +77,61 @@ char array4[11][11]={
 						{'0', '~', '~', '~', '~', '~', '~', '~', '~', '~', '~'}
 					};
 
-void name();
+void name(int player);
 void welcome();
-void mainboard();
-void carrier();
-void battleship();
-void cruiser();
-void submarine();
-void destroyer();
+void mainboard(int player);
+void carrier(int player);
+void battleship(int player);
+void cruiser(int player);
+void submarine(int player);
+void destroyer(int player);
+void showStore();
+void game();
+void showResult();
 
+void showStore()
+{
+	char *array;
+	switch (player)
+	{
+		case 1:
+			array = &array1[0][0];
+			break;
+		case 2:
+			array = &array2[0][0];
+			break;
+	}
+	for(int i = 0; i < 11; i++)
+	{
+		for(int j = 0; j < 11; j++)
+		{
+			printf("%c ",array[i * 11 + j]);
+		}
+		printf("\n");
+	}
+}
 
+void showResult()
+{
+	char *array;
+	switch (player)
+	{
+		case 1:
+			array = &array4[0][0];
+			break;
+		case 2:
+			array = &array3[0][0];
+			break;
+	}
+	for(int i = 0; i < 11; i++)
+	{
+		for(int j = 0; j < 11; j++)
+		{
+			printf("%c ",array[i * 11 + j]);
+		}
+		printf("\n");
+	}
+}
 
 void welcome()
 {
@@ -125,10 +170,11 @@ void welcome()
 
 	printf("Are you ready ? (1)Yes (2)No");
 	scanf("%d", &ans);
+	fflush(stdin);
 
 	if(ans == 1)
 	{
-		mainboard();
+		mainboard(player);
 	}
 	else if(ans == 2)
 	{
@@ -136,16 +182,17 @@ void welcome()
 	}
 }
 
-void name()
+void name(int player)
 {
 	int ans;
 
 	printf("Do you want to start the game, (1)Yes (2)No");
 	scanf("%d", &ans);
+	fflush(stdin);
 
 	if(ans == 1)
 	{
-		welcome();
+		welcome(player);
 	}
 	else if(ans == 2)
 	{
@@ -153,21 +200,30 @@ void name()
 	}
 }
 
-void mainboard()
+void mainboard(int player)
 {
 		printf("Player grid\n");
+		char *array;
+		switch (player){
+		case 1:
+			array = &array1[0][0];
+			break;
+		case 2:
+			array = &array2[0][0];
+			break;
+		}
 		for(int i = 0; i < 11; i++)
 		{
 			for(int j = 0; j < 11; j++)
 			{
-				printf("%c ",array1[i][j]);
+				printf("%c ",array[i * 11 + j]);
 			}
 			printf("\n");
 		}
-		carrier();
+		carrier(player);
 }
 
-void carrier()
+void carrier(int player)
 {
 	int b , x ,h;
 	char y;
@@ -175,11 +231,13 @@ void carrier()
 
 	A:printf("You want to place your carrier in (1) horizontal or (2) vertical");
 	scanf("%d", &b);
+	fflush(stdin);
 
 	if(b == 1)
 	{
 		a:printf("Please enter one coordinate (1A) for carrier:");
 		scanf("%d%c", &x, &y);
+		fflush(stdin);
 
 		if(y>=65 && y<=74)
 		{
@@ -188,7 +246,7 @@ void carrier()
 		else
 		{
 			printf("Please enter an alphabet between A to J\n");
-			carrier();
+			carrier(player);
 		}
 		if(h>6)
 		{
@@ -222,11 +280,12 @@ void carrier()
 				}
 			}
 		}
-	}/**/
+	}
 	else if(b == 2)
 	{
 		b:printf("Please enter one coordinate (1A) for carrier:");
 		scanf("%d%c", &x, &y);
+		fflush(stdin);
 
 		if(y>=65 && y<=74)
 		{
@@ -235,7 +294,7 @@ void carrier()
 		else
 		{
 			printf("Please enter an alphabet between A to J\n");
-			carrier();
+			carrier(player);
 		}
 		if(x>6)
 		{
@@ -275,27 +334,11 @@ void carrier()
 		printf("Please enter 1 or 2.\n");
 		goto A;
 	}
-			 char *array;
-		 switch (player){
-		 case 1:
-			 array = &array1[0][0];
-			 break;
-		 case 2:
-			 array = &array2[0][0];
-			 break;
-		 }
-		for(int i = 0; i < 11; i++)
-		{
-			for(int j = 0; j < 11; j++)
-			{
-				printf("%c ",array[i * 11 + j]);
-			}
-			printf("\n");
-		}
-	battleship();
+	showStore();
+	battleship(player);
 }
 
-void battleship()
+void battleship(int player)
 {
 	int b , x ,h;
 	char y;
@@ -305,11 +348,13 @@ void battleship()
 	{
 		A:printf("You want to place your battleship in (1) horizontal or (2) vertical");
 		scanf("%d", &b);
+		fflush(stdin);
 
 		if(b == 1)
 		{
 			a:printf("Please enter one coordinate (1A) for battleship:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -318,7 +363,7 @@ void battleship()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				battleship();
+				battleship(player);
 			}
 			if(h>7)
 			{
@@ -357,6 +402,7 @@ void battleship()
 		{
 			b:printf("Please enter one coordinate (1A) for battleship:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -365,7 +411,7 @@ void battleship()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				battleship();
+				battleship(player);
 			}
 			if(x>7)
 			{
@@ -405,28 +451,12 @@ void battleship()
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		 char *array;
-		 switch (player){
-		 case 1:
-			 array = &array1[0][0];
-			 break;
-		 case 2:
-			 array = &array2[0][0];
-			 break;
-		 }
-		for(int i = 0; i < 11; i++)
-		{
-			for(int j = 0; j < 11; j++)
-			{
-				printf("%c ",array[i * 11 + j]);
-			}
-			printf("\n");
-		}
+		showStore();
 	}
-	cruiser();
+	cruiser(player);
 }
 
-void cruiser()
+void cruiser(int player)
 {
 	int b , x ,h;
 	char y;
@@ -436,11 +466,13 @@ void cruiser()
 	{
 		A:printf("You want to place your cruiser in (1) horizontal or (2) vertical");
 		scanf("%d", &b);
+		fflush(stdin);
 
 		if(b == 1)
 		{
 			a:printf("Please enter one coordinate (1A) for cruiser:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -449,7 +481,7 @@ void cruiser()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				cruiser();
+				cruiser(player);
 			}
 			if(h>8)
 			{
@@ -488,6 +520,7 @@ void cruiser()
 		{
 			b:printf("Please enter one coordinate (1A) for cruiser:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -496,7 +529,7 @@ void cruiser()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				cruiser();
+				cruiser(player);
 			}
 			if(x>8)
 			{
@@ -536,28 +569,12 @@ void cruiser()
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		 char *array;
-		 switch (player){
-		 case 1:
-			 array = &array1[0][0];
-			 break;
-		 case 2:
-			 array = &array2[0][0];
-			 break;
-		 }
-		for(int i = 0; i < 11; i++)
-		{
-			for(int j = 0; j < 11; j++)
-			{
-				printf("%c ",array[i * 11 + j]);
-			}
-			printf("\n");
-		}
+		showStore();
 	}
-	submarine();
+	submarine(player);
 }
 
-void submarine()
+void submarine(int player)
 {
 	int b , x ,h;
 	char y;
@@ -567,6 +584,7 @@ void submarine()
 	{
 		A:printf("You want to place your submarine in (1) horizontal or (2) vertical");
 		scanf("%d", &b);
+		fflush(stdin);
 
 		if(b == 1)
 		{
@@ -580,7 +598,7 @@ void submarine()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				submarine();
+				submarine(player);
 			}
 			if(h>8)
 			{
@@ -619,6 +637,7 @@ void submarine()
 		{
 			b:printf("Please enter one coordinate (1A) for submarine:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -627,7 +646,7 @@ void submarine()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				submarine();
+				submarine(player);
 			}
 			if(x>8)
 			{
@@ -667,28 +686,12 @@ void submarine()
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		 char *array;
-		 switch (player){
-		 case 1:
-			 array = &array1[0][0];
-			 break;
-		 case 2:
-			 array = &array2[0][0];
-			 break;
-		 }
-		for(int i = 0; i < 11; i++)
-		{
-			for(int j = 0; j < 11; j++)
-			{
-				printf("%c ",array[i * 11 + j]);
-			}
-			printf("\n");
-		}
+		showStore();
 	}
-	destroyer();
+	destroyer(player);
 }
 
-void destroyer()
+void destroyer(int player)
 {
 	int b , x ,h;
 	char y;
@@ -698,11 +701,13 @@ void destroyer()
 	{
 		A:printf("You want to place your destroyer in (1) horizontal or (2) vertical");
 		scanf("%d", &b);
+		fflush(stdin);
 
 		if(b == 1)
 		{
 			a:printf("Please enter one coordinate (1A) for destroyer:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -711,7 +716,7 @@ void destroyer()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				destroyer();
+				destroyer(player);
 			}
 			if(h>9)
 			{
@@ -750,6 +755,7 @@ void destroyer()
 		{
 			b:printf("Please enter one coordinate (1A) for destroyer:");
 			scanf("%d%c", &x, &y);
+			fflush(stdin);
 
 			if(y>=65 && y<=74)
 			{
@@ -758,7 +764,7 @@ void destroyer()
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				destroyer();
+				destroyer(player);
 			}
 			if(x>9)
 			{
@@ -798,29 +804,89 @@ void destroyer()
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		 char *array;
-		 switch (player){
-		 case 1:
-			 array = &array1[0][0];
-			 break;
-		 case 2:
-			 array = &array2[0][0];
-			 break;
-		 }
-		for(int i = 0; i < 11; i++)
-		{
-			for(int j = 0; j < 11; j++)
-			{
-				printf("%c ",array[i * 11 + j]);
-			}
-			printf("\n");
-		}
+		showStore();
 	}
 }
 
 void game(void)
 {
+	int x, h, player1Hit=0, player2Hit=0;
+	char y;
 
+	for(int i=0; i<200; i++)
+	{
+		if(player == 1)
+		{
+			a:printf("Player 1, please enter a coordinate (1A) to attack:");
+			scanf("%d%c", &x, &y);
+			fflush(stdin);
+
+			if(y>=65 && y<=74)
+			{
+				h = y - 64;
+			}
+			else
+			{
+				printf("Please enter an alphabet between A to J\n");
+				goto a;
+			}
+			if(array2[x][h] != '~')
+			{
+				array3[x][h] = 'X';
+				player1Hit++;
+				if(player1Hit == 44)
+				{
+					printf("Player 1 win the game !!!");
+				}
+				else
+				{
+					goto a;
+				}
+			}
+			else
+			{
+				array3[x][h] = '*';
+				player = 2;
+			}
+			showResult();
+		}
+		if(player == 2)
+		{
+			b:printf("Player 2, please enter a coordinate (1A) to attack:");
+			scanf("%d%c", &x, &y);
+			fflush(stdin);
+
+			if(y>=65 && y<=74)
+			{
+				h = y - 64;
+			}
+			else
+			{
+				printf("Please enter an alphabet between A to J\n");
+				goto a;
+			}
+			if(array1[x][h] != '~')
+			{
+				array4[x][h] = 'X';
+				player2Hit++;
+				if(player2Hit == 44)
+				{
+					printf("Player 2 win the game !!!");
+				}
+				else
+				{
+					goto b;
+				}
+
+			}
+			else
+			{
+				array4[x][h] = '*';
+				player = 1;
+			}
+			showResult();
+		}
+	}
 }
 
 int main(void)
@@ -830,9 +896,13 @@ int main(void)
 
 	player = 1;
 	printf("Player 1\n");
-	name();
+	name(1);
 
 	player = 2;
 	printf("Player 2\n");
-	name();
+	name(2);
+
+	game();
+
+	return EXIT_SUCCESS;
 }
