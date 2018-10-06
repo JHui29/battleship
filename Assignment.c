@@ -222,7 +222,7 @@ void carrier()
 				}
 			}
 		}
-	}
+	}/**/
 	else if(b == 2)
 	{
 		b:printf("Please enter one coordinate (1A) for carrier:");
