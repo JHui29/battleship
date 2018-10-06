@@ -85,11 +85,11 @@ void battleship(int player);
 void cruiser(int player);
 void submarine(int player);
 void destroyer(int player);
-void showStore();
+void showStore(int player);
 void game();
-void showResult();
+void showResult(int player);
 
-void showStore()
+void showStore(int player)
 {
 	char *array;
 	switch (player)
@@ -111,7 +111,7 @@ void showStore()
 	}
 }
 
-void showResult()
+void showResult(int player)
 {
 	char *array;
 	switch (player)
@@ -246,7 +246,7 @@ void carrier(int player)
 		else
 		{
 			printf("Please enter an alphabet between A to J\n");
-			carrier(player);
+			goto a;
 		}
 		if(h>6)
 		{
@@ -294,7 +294,7 @@ void carrier(int player)
 		else
 		{
 			printf("Please enter an alphabet between A to J\n");
-			carrier(player);
+			goto b;
 		}
 		if(x>6)
 		{
@@ -308,7 +308,7 @@ void carrier(int player)
 				if(array1[x+i][h] != '~')
 				{
 					printf("The ship is overlapping, please enter again.\n");
-					goto a;
+					goto b;
 				}
 				else
 				{
@@ -320,7 +320,7 @@ void carrier(int player)
 				if(array2[x+i][h] != '~')
 				{
 					printf("The ship is overlapping, please enter again.\n");
-					goto a;
+					goto b;
 				}
 				else
 				{
@@ -334,7 +334,7 @@ void carrier(int player)
 		printf("Please enter 1 or 2.\n");
 		goto A;
 	}
-	showStore();
+	showStore(player);
 	battleship(player);
 }
 
@@ -363,7 +363,7 @@ void battleship(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				battleship(player);
+				goto a;
 			}
 			if(h>7)
 			{
@@ -411,7 +411,7 @@ void battleship(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				battleship(player);
+				goto b;
 			}
 			if(x>7)
 			{
@@ -425,7 +425,7 @@ void battleship(int player)
 					if(array1[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -437,7 +437,7 @@ void battleship(int player)
 					if(array2[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -451,7 +451,7 @@ void battleship(int player)
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		showStore();
+		showStore(player);
 	}
 	cruiser(player);
 }
@@ -481,7 +481,7 @@ void cruiser(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				cruiser(player);
+				goto a;
 			}
 			if(h>8)
 			{
@@ -529,7 +529,7 @@ void cruiser(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				cruiser(player);
+				goto b;
 			}
 			if(x>8)
 			{
@@ -543,7 +543,7 @@ void cruiser(int player)
 					if(array1[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -555,7 +555,7 @@ void cruiser(int player)
 					if(array2[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -569,7 +569,7 @@ void cruiser(int player)
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		showStore();
+		showStore(player);
 	}
 	submarine(player);
 }
@@ -598,7 +598,7 @@ void submarine(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				submarine(player);
+				goto a;
 			}
 			if(h>8)
 			{
@@ -646,7 +646,7 @@ void submarine(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				submarine(player);
+				goto b;
 			}
 			if(x>8)
 			{
@@ -660,7 +660,7 @@ void submarine(int player)
 					if(array1[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -672,7 +672,7 @@ void submarine(int player)
 					if(array2[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -686,7 +686,7 @@ void submarine(int player)
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		showStore();
+		showStore(player);
 	}
 	destroyer(player);
 }
@@ -716,7 +716,7 @@ void destroyer(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				destroyer(player);
+				goto a;
 			}
 			if(h>9)
 			{
@@ -764,7 +764,7 @@ void destroyer(int player)
 			else
 			{
 				printf("Please enter an alphabet between A to J\n");
-				destroyer(player);
+				goto b;
 			}
 			if(x>9)
 			{
@@ -778,7 +778,7 @@ void destroyer(int player)
 					if(array1[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -790,7 +790,7 @@ void destroyer(int player)
 					if(array2[x+i][h] != '~')
 					{
 						printf("The ship is overlapping, please enter again.\n");
-						goto a;
+						goto b;
 					}
 					else
 					{
@@ -804,7 +804,7 @@ void destroyer(int player)
 			printf("Please enter 1 or 2.\n");
 			goto A;
 		}
-		showStore();
+		showStore(player);
 	}
 }
 
@@ -834,6 +834,7 @@ void game(void)
 			{
 				array3[x][h] = 'X';
 				player1Hit++;
+				showResult(1);
 				if(player1Hit == 44)
 				{
 					printf("Player 1 win the game !!!");
@@ -848,7 +849,6 @@ void game(void)
 				array3[x][h] = '*';
 				player = 2;
 			}
-			showResult();
 		}
 		if(player == 2)
 		{
@@ -869,6 +869,7 @@ void game(void)
 			{
 				array4[x][h] = 'X';
 				player2Hit++;
+				showResult(2);
 				if(player2Hit == 44)
 				{
 					printf("Player 2 win the game !!!");
@@ -884,7 +885,6 @@ void game(void)
 				array4[x][h] = '*';
 				player = 1;
 			}
-			showResult();
 		}
 	}
 }
